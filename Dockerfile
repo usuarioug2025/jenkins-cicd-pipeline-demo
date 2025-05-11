@@ -1,5 +1,4 @@
 FROM eclipse-temurin:17-jdk-alpine as build
-LABEL authors="Alan Tumbaco"
 WORKDIR /workspace/app
 
 COPY mvnw .

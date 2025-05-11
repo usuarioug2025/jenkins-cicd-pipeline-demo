@@ -36,33 +36,35 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Build Docker Image (Simulation)') {
             steps {
-                // Construir imagen Docker
-                sh 'docker build -t jenkins-demo-app:latest .'
+                // Simulación de construcción de imagen Docker
+                echo 'Simulando construcción de imagen Docker...'
+                echo 'docker build -t jenkins-demo-app:latest .'
+                // Ver el contenido del Dockerfile para verificar
+                sh 'cat Dockerfile'
             }
         }
 
-        stage('Deploy') {
+        stage('Deploy (Simulation)') {
             steps {
-                // Detener contenedor anterior si existe
-                sh 'docker stop jenkins-demo-app || true'
-                sh 'docker rm jenkins-demo-app || true'
+                // Simulación de despliegue
+                echo 'Simulando despliegue de la aplicación...'
+                echo 'Deteniendo contenedor anterior si existe: docker stop jenkins-demo-app || true'
+                echo 'Eliminando contenedor anterior si existe: docker rm jenkins-demo-app || true'
+                echo 'Desplegando nuevo contenedor: docker run -d -p 8888:8080 --name jenkins-demo-app jenkins-demo-app:latest'
 
-                // Ejecutar nuevo contenedor
-                sh 'docker run -d -p 8888:8080 --name jenkins-demo-app jenkins-demo-app:latest'
-
-                echo 'Application deployed successfully at http://localhost:8888'
+                echo 'Aplicación desplegada (simulación) correctamente en http://localhost:8888'
             }
         }
     }
 
     post {
         success {
-            echo 'Pipeline executed successfully!'
+            echo 'Pipeline ejecutado exitosamente!'
         }
         failure {
-            echo 'Pipeline execution failed!'
+            echo 'Pipeline falló en su ejecución!'
         }
     }
 }
