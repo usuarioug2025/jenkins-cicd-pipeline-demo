@@ -26,6 +26,6 @@ public class HelloControllerTest {
     public void shouldReturnVersionInfo() throws Exception {
         mockMvc.perform(get("/version"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("v1.0.0"));
+                .andExpect(content().string("v1.0.1"));
     }
 }
